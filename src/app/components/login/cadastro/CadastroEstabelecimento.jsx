@@ -17,8 +17,8 @@ import { Form, Text } from 'informed';
 
 import { NotificationManager } from 'react-notifications'
 
-import TipoAcessoUsuarioEnum from '../../../utils/TipoAcessoUsuarioEnum';
 import { CadastrarEstabelecimento } from '../../../redux/actions/Estabelecimento/EstabelecimentoActions';
+import '../css/Login.css';
 
 class CadastroEstabelecimento extends Component {
     constructor(props){
@@ -36,7 +36,6 @@ class CadastroEstabelecimento extends Component {
 		let nomeFantasia = data.nomeFantasia; 
 		let cnpj = data.cnpj; 
 		let email = data.email; 
-		//   let acessoUsuario = TipoAcessoUsuarioEnum.Estabelecimento;
 
 		if(!nomeFantasia || !cnpj || !email){
 			NotificationManager.warning('Preencha todos campos!', 'Atenção');
@@ -53,7 +52,7 @@ class CadastroEstabelecimento extends Component {
 		this.props.CadastrarEstabelecimento(estabelecimento)
 			.then((res) => {
 				if(res.type != "CADASTRAR_ESTABELECIMENTO_FAIL") {
-					this.props.history.push('/Cadastro/Estabelecimento/Sucesso');
+					this.props.history.push('/Cadastro/Sucesso');
 				}
 			}
 		)
@@ -62,7 +61,7 @@ class CadastroEstabelecimento extends Component {
     render() {
     return (
 		<div className="animated fadeIn">
-			<div className="app flex-row align-items-center">
+			<div className="app flex-row align-items-center bg-image">
 				<Container>
 					<Row className="justify-content-center">
 						<Col xs="8" sm="8">
@@ -107,8 +106,8 @@ class CadastroEstabelecimento extends Component {
 						</Col>
 					</Row>
 					<div className="text-center">
-						<Link to="/Cadastro">
-							<Button color="light" width='50' className="mt-3" active tabIndex={-1}>Voltar</Button>
+						<Link to="/Login">
+							<Button color="info" width='50' className="mt-3" active tabIndex={-1}>Voltar</Button>
 						</Link>
 					</div>
 				</Container>

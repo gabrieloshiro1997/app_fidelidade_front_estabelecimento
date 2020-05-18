@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { NotificationManager, NotificationContainer } from 'react-notifications';
 import { connect } from 'react-redux';
-import { LoginUsuario } from '../../redux/actions/Login/LoginActions';
+import { RealizarLoginEstabelecimento } from '../../redux/actions/Login/LoginActions';
+import './css/Login.css';
 
-class Login extends Component {
+class LoginEstabelecimento extends Component {
     constructor(props){
         super(props);
 
@@ -47,8 +48,14 @@ class Login extends Component {
             return;
         }
 
-        this.props.LoginUsuario(this.state.usuario, this.state.senha)
-        .then(() => this.props.history.push('/Home'));
+        this.props.RealizarLoginEstabelecimento(this.state.usuario, this.state.senha)
+        .then((res) => {
+			if(res.type == "LOGIN_ESTABELECIMENTO_SUCCESS") {
+				this.props.history.push('/Home');
+			} else {
+				this.props.history.push('/Login');
+			}
+		});
 
     }
     handleEnterPress(event) {
@@ -62,48 +69,57 @@ class Login extends Component {
       this.login(e);
     }
     render() {
-    return (
-      <div className="app flex-row align-items-center">
-        <Container>
-          <Row className="justify-content-center">
-            <Col md="10">
-              <CardGroup>
-                <Card className="text-white bg-info py-5 d-md-down-none" style={{ width: '44%' }}>
-				<CardBody className="text-center">
-                    <div>
-                      <h2>Login</h2>
-                      <p>Para efetuar o login, clique no link abaixo:</p>
-
-					  <div className="text-center">
-						<Link to="/Login/Selecionar">
-							<Button color="primary" width='50' className="mt-3" active tabIndex={-1}>Continuar com o Login</Button>
-						</Link>
-					  </div>
-                    </div>
-                  </CardBody>
-                </Card>
-				<Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
-                  <CardBody className="text-center">
-                    <div>
-                      <h2>Criar uma nova conta</h2>
-                      <p>Para efetuar o cadastro, clique no link abaixo:</p>
-
-					  <div className="text-center">
+		return (
+			<div className="app flex-row align-items-center bg-image">
+				<Container>
+					<Row className="justify-content-center">
+						<Col md="6">
+							<CardGroup>
+								<Card className="p-4">
+									<CardBody>
+										<Form onSubmit={(e) => this.onSubmit(e)}>
+										<h1>Login</h1>
+										<p className="text-muted">Faça login em sua conta do estabelecimento</p>
+										<InputGroup className="mb-3">
+											<InputGroupAddon addonType="prepend">
+												<InputGroupText>
+													<i className="icon-user"></i>
+												</InputGroupText>
+											</InputGroupAddon>
+											<Input onChange={(e) => this.handleChangeUsuario(e)}type="text" placeholder="Usuário" autoComplete="username" />
+										</InputGroup>
+										<InputGroup className="mb-4">
+											<InputGroupAddon addonType="prepend">
+												<InputGroupText>
+													<i className="icon-lock"></i>
+												</InputGroupText>
+											</InputGroupAddon>
+											<Input onChange={(e) => this.handleChangeSenha(e)} type="password" placeholder="Senha" autoComplete="current-password" />
+										</InputGroup>
+										<Row>
+											<Col xs="6">
+												<Button onClick={(e) => this.login(e)} color="primary" className="px-4">Login</Button>
+											</Col>
+											<Col xs="6" className="text-right">
+												<Button color="link" className="px-0">Esqueci minha senha</Button>
+											</Col>
+										</Row>
+										</Form>
+									</CardBody>
+								</Card>
+							</CardGroup>
+						</Col>
+					</Row>
+					<div className="text-center">
 						<Link to="/Cadastro">
-							<Button color="primary" width='50' className="mt-3" active tabIndex={-1}>Continuar com o cadastro</Button>
+							<Button className="mt-3" color="success" width="50" >Realizar Cadastro</Button>
 						</Link>
-					  </div>
-                    </div>
-                  </CardBody>
-                </Card>
-              </CardGroup>
-            </Col>
-          </Row>
-        </Container>
-        <NotificationContainer />
-      </div>
-    );
-  }
+					</div>
+				</Container>
+				<NotificationContainer />
+			</div>
+		);
+  	}
 }
 
-export default connect(null, { LoginUsuario })(Login)
+export default connect(null, { RealizarLoginEstabelecimento })(LoginEstabelecimento)

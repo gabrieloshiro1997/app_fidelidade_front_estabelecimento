@@ -6,7 +6,6 @@ import decode from 'jwt-decode';
 
 import { 
     LOGOUT, 
-	LOGIN_SUCCESS,
 	LOGIN_ESTABELECIMENTO_SUCCESS
 } from '../actions/Login/LoginActionTypes';
 
@@ -30,7 +29,6 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch(action.type){
-        case LOGIN_SUCCESS:
 		case LOGIN_ESTABELECIMENTO_SUCCESS:
 			 {
             registerJwt(action.payload.data);

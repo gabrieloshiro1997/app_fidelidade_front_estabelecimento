@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { 
-	Row,
+import {
 	Col,
 	Card,
 	CardBody,
