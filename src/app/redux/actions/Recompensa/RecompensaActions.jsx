@@ -7,8 +7,14 @@ import {
 	EXIBIR_MODAL_FORMULARIO_RECOMPENSA,
 	ESCONDER_MODAL_FORMULARIO_RECOMPENSA,
 	EXIBIR_MODAL_EXCLUIR_RECOMPENSA,
-	ESCONDER_MODAL_EXCLUIR_RECOMPENSA
+	ESCONDER_MODAL_EXCLUIR_RECOMPENSA,
+	INATIVAR_RECOMPENSA,
+	ATIVAR_RECOMPENSA,
+	ESCONDER_MODAL_ALTERAR_STATUS_RECOMPENSA,
+	EXIBIR_MODAL_ALTERAR_STATUS_RECOMPENSA,
+	LIMPAR_CONSULTA_RECOMPENSAS,
 } from './RecompensaActionTypes';
+
 import { ESTABELECIMENTO_ID } from '../../../../config/utils/LocalStorageKeys';
 
 export const ObterRecompensas = () => {
@@ -23,6 +29,10 @@ export const ObterRecompensas = () => {
 		}
 	}
 }
+
+export const LimparConsultaRecompensas = () => ({
+	type: LIMPAR_CONSULTA_RECOMPENSAS 
+})
 
 export const ObterRecompensa = (id) => ({
 	type: OBTER_RECOMPENSA,
@@ -66,6 +76,26 @@ export const ExcluirRecompensa = (id) => ({
 	}
 });
 
+export const AtivarRecompensa = (id) => ({
+	type: ATIVAR_RECOMPENSA,
+	payload: {
+		request: {
+			url: `/api/recompensa/ativar/${id}`,
+			method: 'PUT'
+		}
+	}
+});
+
+export const InativarRecompensa = (id) => ({
+	type: INATIVAR_RECOMPENSA,
+	payload: {
+		request: {
+			url: `/api/recompensa/inativar/${id}`,
+			method: 'PUT'
+		}
+	}
+});
+
 export const EsconderModalFormularioRecompensa = () => ({
 	type: ESCONDER_MODAL_FORMULARIO_RECOMPENSA
 });
@@ -80,4 +110,13 @@ export const EsconderModalExcluirRecompensa = () => ({
 
 export const ExibirModalExcluirRecompensa = () => ({
 	type: EXIBIR_MODAL_EXCLUIR_RECOMPENSA
+});
+
+
+export const EsconderModalAlterarStatusRecompensa = () => ({
+	type: ESCONDER_MODAL_ALTERAR_STATUS_RECOMPENSA
+});
+
+export const ExibirModalAlterarStatusRecompensa = () => ({
+	type: EXIBIR_MODAL_ALTERAR_STATUS_RECOMPENSA
 });

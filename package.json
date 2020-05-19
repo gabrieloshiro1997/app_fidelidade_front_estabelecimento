@@ -27,6 +27,7 @@
     "font-awesome": "^4.7.0",
     "informed": "^3.6.1",
     "jwt-decode": "^2.2.0",
+    "moment": "^2.25.3",
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

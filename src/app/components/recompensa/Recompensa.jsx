@@ -3,13 +3,17 @@ import {
 	Card, 
 	CardBody, 
 	CardHeader, 
-	Col
+	Col,
+	Button
 } from 'reactstrap';
 import TabelaRecompensa from './TabelaRecompensa';
 import ModalFormularioRecompensa from './ModalFormularioRecompensa';
 import ModalDeletarRecompensa from './ModalDeletarRecompensa';
+import ModalAlterarStatusRecompensa from './ModalAlterarStatusRecompensa';
+import { connect } from 'react-redux';
+import { ExibirModalFormularioRecompensa } from '../../redux/actions/Recompensa/RecompensaActions';
 
-export default class Recompensa extends Component {
+class Recompensa extends Component {
 	render() {
 		return (
 			<>
@@ -18,7 +22,7 @@ export default class Recompensa extends Component {
 						<CardHeader>
 							<big id="titulo-header-componente">Lista de Recompensas</big>
 							<div className="card-header-actions">
-								{/* <Button className="fa fa-plus btn-sm mx-1 bg-success" onClick={() => this.props.ExibirModalFormularioUsuario()}></Button> */}
+								<Button className="fa fa-plus btn-sm mx-1 bg-success" onClick={() => this.props.ExibirModalFormularioRecompensa()}></Button>
 							</div>
 						</CardHeader>
 						<CardBody>
@@ -27,8 +31,11 @@ export default class Recompensa extends Component {
 					</Card>
 					<ModalFormularioRecompensa />
 					<ModalDeletarRecompensa />
+					<ModalAlterarStatusRecompensa />
 				</Col>
 			</>
 		)
 	}
 }
+
+export default connect(null, { ExibirModalFormularioRecompensa })(Recompensa);

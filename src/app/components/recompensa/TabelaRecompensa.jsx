@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table, Button } from 'reactstrap';
-import { ObterRecompensas, ObterRecompensa, ExibirModalFormularioRecompensa, ExibirModalExcluirRecompensa } from '../../redux/actions/Recompensa/RecompensaActions';
+import {
+	ObterRecompensas,
+	ObterRecompensa,
+	ExibirModalFormularioRecompensa,
+	ExibirModalExcluirRecompensa,
+	ExibirModalAlterarStatusRecompensa,
+	LimparConsultaRecompensas
+} from '../../redux/actions/Recompensa/RecompensaActions';
+import './css/TabelaRecompensa.css';
 
 class TabelaRecompensa extends Component {
 	constructor(props) {
@@ -9,20 +17,37 @@ class TabelaRecompensa extends Component {
 		this.editarRecompensa = this.editarRecompensa.bind(this);
 		this.excluirRecompensa = this.excluirRecompensa.bind(this);
 		this.formatarData = this.formatarData.bind(this);
+		this.alterarStatusRecompensa = this.alterarStatusRecompensa.bind(this);
+
 		this.props.ObterRecompensas();
+	}
+
+	componentWillUnmount() {
+		this.props.LimparConsultaRecompensas();
 	}
 	editarRecompensa(idRecompensa) {
 		this.props.ObterRecompensa(idRecompensa)
-        .then(() => this.props.ExibirModalFormularioRecompensa());
+			.then(() => this.props.ExibirModalFormularioRecompensa());
 	}
 
 	excluirRecompensa(idRecompensa) {
 		this.props.ObterRecompensa(idRecompensa)
-        .then(() => this.props.ExibirModalExcluirRecompensa());
+			.then(() => this.props.ExibirModalExcluirRecompensa());
+	}
+
+	alterarStatusRecompensa(idRecompensa) {
+		this.props.ObterRecompensa(idRecompensa)
+			.then(() => this.props.ExibirModalAlterarStatusRecompensa());
 	}
 
 	formatarData(data) {
-		return new Date(data).getDay() + '/' + new Date(data).getMonth() + '/' + new Date(data).getFullYear(); 
+		let dia = new Date(data).getDate();
+		let mes = new Date(data).getMonth() + 1;
+		let ano = new Date(data).getFullYear();
+
+		let dataFormatada = dia + '/' + mes + '/' + ano;
+		
+		return dataFormatada;
 	}
 	render() {
 		return (
@@ -40,7 +65,7 @@ class TabelaRecompensa extends Component {
 				<tbody>
 					{
 						this.props.recompensas.map((recompensa, index) => (
-							<tr className="text-center" key={index}>
+							<tr className={recompensa.status == 1 ? "ativo" : "inativo"} key={index}>
 								<td className="text-left">{recompensa.descricao}</td>
 								<td>{recompensa.pontos}</td>
 								<td>{recompensa.preco}</td>
@@ -48,6 +73,7 @@ class TabelaRecompensa extends Component {
 								<td>{recompensa.status === 0 ? 'Inativo' : 'Ativo'}</td>
 								<td>
 									<Button className="fa fa-edit btn-sm mx-1 bg-primary" onClick={() => this.editarRecompensa(recompensa.id)} />
+									<Button className="fa fa-edit btn-sm mx-1 bg-warning" onClick={() => this.alterarStatusRecompensa(recompensa.id)} />
 									<Button className="fa fa-edit btn-sm mx-1 bg-danger" onClick={() => this.excluirRecompensa(recompensa.id)} />
 								</td>
 							</tr>
@@ -64,4 +90,11 @@ const MapStateToProps = (state) => {
 		recompensas: state.RecompensaReducer.recompensas
 	}
 }
-export default connect(MapStateToProps, { ObterRecompensas, ObterRecompensa, ExibirModalFormularioRecompensa, ExibirModalExcluirRecompensa })(TabelaRecompensa);
+export default connect(MapStateToProps, {
+	ObterRecompensas,
+	ObterRecompensa,
+	ExibirModalFormularioRecompensa, 
+	ExibirModalExcluirRecompensa, 
+	ExibirModalAlterarStatusRecompensa,
+	LimparConsultaRecompensas
+})(TabelaRecompensa);

@@ -1,0 +1,10 @@
+.ativo {
+	text-align: center !important;
+	background-color: #cee2ce;
+;
+}
+
+.inativo {
+	text-align: center !important;
+	background-color: #f2d4db;
+}
