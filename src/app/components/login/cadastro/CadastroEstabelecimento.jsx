@@ -51,7 +51,7 @@ class CadastroEstabelecimento extends Component {
 
 		this.props.CadastrarEstabelecimento(estabelecimento)
 			.then((res) => {
-				if(res.type != "CADASTRAR_ESTABELECIMENTO_FAIL") {
+				if(res.type !== "CADASTRAR_ESTABELECIMENTO_FAIL") {
 					this.props.history.push('/Cadastro/Sucesso');
 				}
 			}

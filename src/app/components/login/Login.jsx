@@ -50,7 +50,7 @@ class LoginEstabelecimento extends Component {
 
         this.props.RealizarLoginEstabelecimento(this.state.usuario, this.state.senha)
         .then((res) => {
-			if(res.type == "LOGIN_ESTABELECIMENTO_SUCCESS") {
+			if(res.type === "LOGIN_ESTABELECIMENTO_SUCCESS") {
 				this.props.history.push('/Home');
 			} else {
 				this.props.history.push('/Login');
@@ -86,7 +86,7 @@ class LoginEstabelecimento extends Component {
 													<i className="icon-user"></i>
 												</InputGroupText>
 											</InputGroupAddon>
-											<Input onChange={(e) => this.handleChangeUsuario(e)}type="text" placeholder="Usuário" autoComplete="username" />
+											<Input onChange={(e) => this.handleChangeUsuario(e)}type="text" placeholder="Email" autoComplete="username" />
 										</InputGroup>
 										<InputGroup className="mb-4">
 											<InputGroupAddon addonType="prepend">

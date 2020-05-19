@@ -1,6 +1,7 @@
 import {
     ACCESS_TOKEN,
-    TIPO_ACESSO
+    TIPO_ACESSO,
+    ESTABELECIMENTO_ID
 } from '../../../config/utils/LocalStorageKeys'
 import decode from 'jwt-decode';
 
@@ -15,7 +16,8 @@ const registerJwt = (data) => {
 	const decoded = decode(token);
 	
     localStorage.setItem(ACCESS_TOKEN, data.token);           
-    localStorage.setItem(TIPO_ACESSO, decoded.tipoUsuario);           
+	localStorage.setItem(TIPO_ACESSO, decoded.tipoUsuario);
+	localStorage.setItem(ESTABELECIMENTO_ID, decoded.id);           
 }
 
 const Logout = () => {

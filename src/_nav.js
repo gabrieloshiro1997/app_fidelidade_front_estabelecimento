@@ -8,6 +8,11 @@ export default {
 		name: 'Home',
 		url: '/Home',
 		icon: 'icon-home'
+	  },
+	  {
+		name: 'Recompensa',
+		url: '/Recompensa',
+		icon: 'icon-home'
 	  }
 	],
   };
