@@ -13,6 +13,11 @@ export default {
 		name: 'Recompensa',
 		url: '/Recompensa',
 		icon: 'icon-home'
+	  },
+	  {
+		name: 'Pontuacao',
+		url: '/Pontuacao',
+		icon: 'icon-home'
 	  }
 	],
   };
