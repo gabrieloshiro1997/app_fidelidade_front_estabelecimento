@@ -12,12 +12,12 @@ export default {
 	  {
 		name: 'Recompensa',
 		url: '/Recompensa',
-		icon: 'icon-home'
+		icon: 'icon-basket-loaded'
 	  },
 	  {
 		name: 'Pontuacao',
 		url: '/Pontuacao',
-		icon: 'icon-home'
+		icon: 'icon-star'
 	  }
 	],
   };

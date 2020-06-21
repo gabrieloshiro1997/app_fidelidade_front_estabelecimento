@@ -1,6 +1,8 @@
 import { 
 	CADASTRAR_PONTUACAO,
-	OBTER_PONTUACOES
+	OBTER_PONTUACOES,
+	EXIBIR_MODAL_CADASTRO_PONTUACAO,
+	ESCONDER_MODAL_CADASTRO_PONTUACAO
 } from './PontuacaoActionTypes'
 
 export const CadastrarPontuacao = (pontuacao) => ({
@@ -23,3 +25,11 @@ export const ObterPontuacoes = () => ({
 		}
 	}
 })
+
+export const ExibirModalCadastroPontuacao = () => ({
+	type: EXIBIR_MODAL_CADASTRO_PONTUACAO
+});
+
+export const EsconderModalCadastroPontuacao = () => ({
+	type: ESCONDER_MODAL_CADASTRO_PONTUACAO
+});

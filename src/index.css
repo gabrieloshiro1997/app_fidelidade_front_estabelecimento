@@ -1,3 +1,11 @@
 big#titulo-header-componente{
     font-size: 20px !important;
 }
+
+.loading-background {
+	z-index: 10000 !important;
+}
+
+#icon-logout {
+	color: #2f353a;
+}

@@ -34,16 +34,14 @@ class DefaultHeader extends Component {
         <AppSidebarToggler className="d-md-down-none" display="lg" />
         <Nav className="ml-auto" navbar>
           <UncontrolledDropdown nav direction="down">
-            <DropdownToggle nav>
-              <img src={'../../assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
-            </DropdownToggle>
-            <DropdownMenu right>
-            <Link  className="dropdown-item" 
-                id="btnSair"    
+            <DropdownToggle className="pr-3" nav>
+			<Link   
                 to="/Login"
                 onClick={this.props.Logout}>
-                  <DropdownItem><i className="fa fa-lock"></i> Logout</DropdownItem>
+				<i id="icon-logout" class="fa fa-sign-out fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Sair"></i>
             </Link>
+            </DropdownToggle>
+            <DropdownMenu right>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

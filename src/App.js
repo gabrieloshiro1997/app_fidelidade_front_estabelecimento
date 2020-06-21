@@ -23,6 +23,7 @@ const MapStateToProps = state => {
 
 const Loader = connect(MapStateToProps)((props) => (
   <Loading 
+	className="custom-z-index"
     loading={props.carregando} 
     background="rgba(4, 4, 4, 0.58)" 
     loaderColor="#FFFFFF" />

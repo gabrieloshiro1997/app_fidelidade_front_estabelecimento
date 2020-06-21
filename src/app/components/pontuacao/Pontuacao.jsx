@@ -1,23 +1,34 @@
 import React, { Component } from 'react';
-import { Col, Card, CardBody, CardHeader } from 'reactstrap';
-import FormularioPontuacao from './FormularioPontuacao';
-import TabelaPontuacao from './TabelaPontuacao';
+import { Col, Card, CardBody, Button, CardHeader } from 'reactstrap';
+import { connect } from 'react-redux';
 
-export default class Pontuacao extends Component {
+import TabelaPontuacao from './TabelaPontuacao';
+import ModalCadastroPontuacao from './ModalCadastroPontuacao';
+import { ExibirModalCadastroPontuacao } from '../../redux/actions/Pontuacao/PontuacaoActions';
+
+class Pontuacao extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		return (
 			<>
 				<Col xs="12" lg="12">
 					<Card>
-						<FormularioPontuacao />
-					</Card>
-					<Card>
+						<CardHeader>
+							<big id="titulo-header-componente">Lista de Pontuações</big>
+							<Button className="float-right" color="success" onClick={() => this.props.ExibirModalCadastroPontuacao()}>Cadastrar Pontuação<i className="fa fa-plus ml-1"></i></Button>
+						</CardHeader>
 						<CardBody>
 							<TabelaPontuacao />
 						</CardBody>
 					</Card>
 				</Col>
+				<ModalCadastroPontuacao />
 			</>
 		)
 	}
 }
+
+export default connect(null, { ExibirModalCadastroPontuacao })(Pontuacao);
