@@ -95,7 +95,7 @@ class FormularioPontuacao extends Component {
 	}
 
 	dadosClientePreenchidos() {
-		return this.state.dadosCliente.id != '';
+		return this.state.dadosCliente.id !== '';
 	}
 	render() {
 		return (

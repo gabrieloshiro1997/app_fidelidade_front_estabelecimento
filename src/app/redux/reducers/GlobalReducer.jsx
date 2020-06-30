@@ -1,10 +1,12 @@
 import {
     EXIBIR_LOADING,
-    ESCONDER_LOADING
+	ESCONDER_LOADING,
+	OBTER_DADOS_DASHBOARD_SUCCESS
 } from '../actions/Global/GlobalActionTypes';
 
 const initialState = {
-    carregando: false
+	carregando: false,
+	dadosDashboard: {}
 };
 
 export default (state = initialState, action) => {
@@ -22,7 +24,14 @@ export default (state = initialState, action) => {
                 carregando: false
             }
         }
-        
+		
+		case OBTER_DADOS_DASHBOARD_SUCCESS: {
+			return {
+				...state,
+				dadosDashboard: action.payload.data
+			}
+		}
+
         default:
             return state;
     }

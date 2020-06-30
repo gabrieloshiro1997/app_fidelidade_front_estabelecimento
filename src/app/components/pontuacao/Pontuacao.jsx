@@ -7,10 +7,6 @@ import ModalCadastroPontuacao from './ModalCadastroPontuacao';
 import { ExibirModalCadastroPontuacao } from '../../redux/actions/Pontuacao/PontuacaoActions';
 
 class Pontuacao extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return (
 			<>

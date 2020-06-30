@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table, Button } from 'reactstrap';
+import { Table } from 'reactstrap';
 import {
 	ObterPontuacoes
 } from '../../redux/actions/Pontuacao/PontuacaoActions';

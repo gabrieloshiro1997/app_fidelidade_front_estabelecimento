@@ -65,7 +65,7 @@ class TabelaRecompensa extends Component {
 				<tbody>
 					{
 						this.props.recompensas.map((recompensa, index) => (
-							<tr className={recompensa.status == 1 ? "ativo" : "inativo"} key={index}>
+							<tr className={recompensa.status === 1 ? "ativo" : "inativo"} key={index}>
 								<td className="text-left">{recompensa.descricao}</td>
 								<td>{recompensa.pontos}</td>
 								<td>{recompensa.preco}</td>

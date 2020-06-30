@@ -18,6 +18,11 @@ export default {
 		name: 'Pontuacao',
 		url: '/Pontuacao',
 		icon: 'icon-star'
+	  },
+	  {
+		  name: 'Relatórios',
+		  url: '/Relatorios',
+		  icon: 'icon-chart'
 	  }
 	],
   };

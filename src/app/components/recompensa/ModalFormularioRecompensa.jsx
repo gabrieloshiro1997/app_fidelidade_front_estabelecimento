@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, ModalHeader, ModalBody, Row, Col, FormGroup, Label, ModalFooter, Button } from 'reactstrap';
-import { Form, Text, Select, Option } from 'informed';
+import { Form, Text } from 'informed';
 import { NotificationManager } from 'react-notifications';
 import { ObterRecompensas, AtualizarRecompensa, CadastrarRecompensa, EsconderModalFormularioRecompensa } from '../../redux/actions/Recompensa/RecompensaActions';
 import { ESTABELECIMENTO_ID } from '../../../config/utils/LocalStorageKeys';

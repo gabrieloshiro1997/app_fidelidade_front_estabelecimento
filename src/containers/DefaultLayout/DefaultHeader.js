@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav } from 'reactstrap';
+import {  UncontrolledDropdown, DropdownMenu, DropdownToggle, Nav } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';

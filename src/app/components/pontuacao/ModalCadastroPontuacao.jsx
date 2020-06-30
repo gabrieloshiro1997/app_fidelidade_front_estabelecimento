@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { connect } from 'react-redux';
 
 import FormularioPontuacao from './FormularioPontuacao';
 import { EsconderModalCadastroPontuacao } from '../../redux/actions/Pontuacao/PontuacaoActions';
 
 class ModalCadastroPontuacao extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return (
 			<div>
