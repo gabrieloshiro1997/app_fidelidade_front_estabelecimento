@@ -348,7 +348,7 @@ class Relatorio extends Component {
 								</div>
 							}
 
-							{!this.state.dadosPontuacaMensal.exibirGraficoPontuacaoMensal &&
+							{!this.state.dadosRecompensasRetiradas.exibirGraficoPontuacaoMensal &&
 								<div className="chart-wrapper">
 									<label>Você não tem nenhuma recompensa resgatada</label>
 								</div>
