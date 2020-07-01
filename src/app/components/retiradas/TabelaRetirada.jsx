@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import {
 	ObterHistoricoRetirada
 } from '../../redux/actions/Retirada/RetiradaActions';
@@ -9,8 +9,10 @@ import { ESTABELECIMENTO_ID } from '../../../config/utils/LocalStorageKeys';
 class TabelaRetirada extends Component {
 	constructor(props) {
 		super(props);
-		let idEstabelecimento = localStorage.getItem(ESTABELECIMENTO_ID);
-		this.props.ObterHistoricoRetirada(idEstabelecimento);
+		this.state ={
+			idEstabelecimento: localStorage.getItem(ESTABELECIMENTO_ID)
+		} 
+		this.props.ObterHistoricoRetirada(this.state.idEstabelecimento);
 		this.formatarData = this.formatarData.bind(this);
 	}
 
@@ -34,6 +36,7 @@ class TabelaRetirada extends Component {
 						<th className="text-left">Descrição</th>
 						<th className="text-left">Pontos gastos</th>
 						<th className="text-left">Data da retirada</th>
+						<th><Button className="float-right btn-sm" color="primary" onClick={() => this.props.ObterHistoricoRetirada(this.state.idEstabelecimento)}><i className="fa fa-refresh"></i></Button></th>
 					</tr>
 				</thead>
 				<tbody>

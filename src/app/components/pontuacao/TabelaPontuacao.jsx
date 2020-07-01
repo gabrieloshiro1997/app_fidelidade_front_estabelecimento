@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import {
 	ObterPontuacoes
 } from '../../redux/actions/Pontuacao/PontuacaoActions';
@@ -21,6 +21,7 @@ class TabelaPontuacao extends Component {
 						<th className="text-left">CPF</th>
 						<th className="text-left">Descrição</th>
 						<th className="text-left">Pontuação</th>
+						<th><Button className="float-right btn-sm" color="primary" onClick={() => this.props.ObterPontuacoes()}><i className="fa fa-refresh"></i></Button></th>
 					</tr>
 				</thead>
 				<tbody>
