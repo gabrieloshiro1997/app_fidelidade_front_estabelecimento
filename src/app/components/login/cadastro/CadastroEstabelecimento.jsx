@@ -88,7 +88,7 @@ class CadastroEstabelecimento extends Component {
 											<Col xs="12">
 												<FormGroup>
 													<Label htmlFor="cnpj">CNPJ</Label>
-													<Text className="form-control" field="cnpj" id="cnpj" placeholder="Digite o CNPJ da sua empresa" />
+													<Text maxLength="14" className="form-control" field="cnpj" id="cnpj" placeholder="Digite o CNPJ da sua empresa" />
 												</FormGroup>
 											</Col>
 										</Row>

@@ -112,7 +112,7 @@ class FormularioPontuacao extends Component {
 													<Label htmlFor="cpfUsuario">CPF</Label>
 													<div className="row">
 														<div className="col-10">
-															<Text className="form-control" field="cpfUsuario" id="cpfUsuario" placeholder="Digite o CPF do cliente" />
+															<Text maxLength="11" className="form-control" field="cpfUsuario" id="cpfUsuario" placeholder="Digite o CPF do cliente" />
 														</div>
 														<div className="col-2 pl-0">
 															<Button primary className="btn btn-md btn-primary" onClick={() => this.obterDadosCliente()}><i className="fa fa-search"></i></Button>

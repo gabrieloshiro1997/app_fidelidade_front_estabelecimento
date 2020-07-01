@@ -20,7 +20,6 @@ class LoginEstabelecimento extends Component {
     }
 
     handleChangeUsuario(e){
-        console.log(e.target.value);
         this.setState({
             ...this.state,
             usuario: e.target.value
@@ -28,7 +27,6 @@ class LoginEstabelecimento extends Component {
     }
 
     handleChangeSenha(e){
-        console.log(e.target.value);
         this.setState({
             ...this.state,
             senha: e.target.value
@@ -101,7 +99,7 @@ class LoginEstabelecimento extends Component {
 												<Button onClick={(e) => this.login(e)} color="primary" className="px-4">Login</Button>
 											</Col>
 											<Col xs="6" className="text-right">
-												<Button color="link" className="px-0">Esqueci minha senha</Button>
+												{/* <Button color="link" className="px-0">Esqueci minha senha</Button> */}
 											</Col>
 										</Row>
 										</Form>
