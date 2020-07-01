@@ -6,6 +6,7 @@ import EstabelecimentoReducer from './EstabelecimentoReducer';
 import RecompensaReducer from './RecompensaReducer';
 import PontuacaoReducer from './PontuacaoReducer';
 import ClienteReducer from './ClienteReducer';
+import RetiradaReducer from './RetiradaReducer';
 
 export default combineReducers({ 
     GlobalReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
 	EstabelecimentoReducer,
 	RecompensaReducer,
 	PontuacaoReducer,
-	ClienteReducer
+	ClienteReducer,
+	RetiradaReducer
 });

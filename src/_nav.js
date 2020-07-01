@@ -20,6 +20,12 @@ export default {
 		icon: 'icon-star'
 	  },
 	  {
+		  name: 'Retirada',
+		  url: '/Retiradas',
+		  icon: 'icon-list'
+	  },
+
+	  {
 		  name: 'Relatórios',
 		  url: '/Relatorios',
 		  icon: 'icon-chart'
