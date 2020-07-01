@@ -62,7 +62,7 @@ class ModalFormularioRecompensa extends Component {
 							<Col xs="12">
 								<FormGroup>
 									<Label htmlFor="pontos">Preço</Label>
-									<Text className="form-control" field="preco" id="preco" placeholder="Digite o preço da recompensa" />
+									<Text type="number" className="form-control" field="preco" id="preco" placeholder="Digite o preço da recompensa" />
 								</FormGroup>
 							</Col>
 						</Row>

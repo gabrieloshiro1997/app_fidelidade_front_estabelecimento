@@ -132,7 +132,7 @@ class FormularioPontuacao extends Component {
 													<Col xs="10">
 														<FormGroup>
 															<Label htmlFor="valor">Valor</Label>
-															<Text className="form-control" field="valor" id="valor" placeholder="Digite o valor da compra" />
+															<Text className="form-control" type="number" field="valor" id="valor" placeholder="Digite o valor da compra" />
 														</FormGroup>
 													</Col>
 												</>
