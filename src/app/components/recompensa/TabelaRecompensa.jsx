@@ -74,7 +74,7 @@ class TabelaRecompensa extends Component {
 								<td>
 									<Button className="fa fa-edit btn-sm mx-1 bg-primary" data-toggle="tooltip" data-placement="bottom" title="Editar" onClick={() => this.editarRecompensa(recompensa.id)} />
 									<Button className="fa fa-retweet btn-sm mx-1 bg-warning" data-toggle="tooltip" data-placement="bottom" title="Alterar status" onClick={() => this.alterarStatusRecompensa(recompensa.id)} />
-									<Button className="fa fa-trash btn-sm mx-1 bg-danger" data-toggle="tooltip" data-placement="bottom" title="Excluir" onClick={() => this.excluirRecompensa(recompensa.id)} />
+									{/* <Button className="fa fa-trash btn-sm mx-1 bg-danger" data-toggle="tooltip" data-placement="bottom" title="Excluir" onClick={() => this.excluirRecompensa(recompensa.id)} /> */}
 								</td>
 							</tr>
 						))
