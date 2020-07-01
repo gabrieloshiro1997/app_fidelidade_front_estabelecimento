@@ -42,6 +42,11 @@ class CadastroEstabelecimento extends Component {
 			return;
 		}
 
+		if (!(/[0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2}/.test(cnpj)) || cnpj.length !== 14) {
+			NotificationManager.warning('Digite um cnpj válido!', 'Atenção');
+			return;
+		}
+
 		let estabelecimento = { 
 			nomeFantasia,
 			cnpj,
