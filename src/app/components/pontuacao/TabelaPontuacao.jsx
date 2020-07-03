@@ -4,6 +4,7 @@ import { Table, Button } from 'reactstrap';
 import {
 	ObterPontuacoes
 } from '../../redux/actions/Pontuacao/PontuacaoActions';
+import { addMaskCpf } from '../../utils/helper/helper';
 
 class TabelaPontuacao extends Component {
 	constructor(props) {
@@ -29,7 +30,7 @@ class TabelaPontuacao extends Component {
 						this.props.pontuacoes.map((pontuacao, index) => (
 							<tr key={index}>
 								<td>{pontuacao.nome}</td>
-								<td>{pontuacao.cpf}</td>
+								<td>{addMaskCpf(pontuacao.cpf)}</td>
 								<td>{pontuacao.descricao}</td>
 								<td>{pontuacao.valor}</td>
 							</tr>

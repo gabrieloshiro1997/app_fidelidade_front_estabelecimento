@@ -19,22 +19,28 @@ import { NotificationManager } from 'react-notifications'
 
 import { CadastrarEstabelecimento } from '../../../redux/actions/Estabelecimento/EstabelecimentoActions';
 import '../css/Login.css';
+import { addMaskCnpj, removeMaskCnpj } from '../../../utils/helper/helper';
 
 class CadastroEstabelecimento extends Component {
     constructor(props){
 		super(props);
 		this.setFormApi = this.setFormApi.bind(this);
+		this.addMaskCnpj = this.addMaskCnpj.bind(this);
 	}
 
 	setFormApi(formApi) {
 		this.formApi = formApi;
 	}
 
+	addMaskCnpj(event) {
+		this.formApi.setValue('cnpj', addMaskCnpj(event.target.value));
+	}
+	
 	salvarEstabelecimento() {
 		let data = this.formApi.getValues();
 
 		let nomeFantasia = data.nomeFantasia; 
-		let cnpj = data.cnpj; 
+		let cnpj = removeMaskCnpj(data.cnpj); 
 		let email = data.email; 
 
 		if(!nomeFantasia || !cnpj || !email){
@@ -42,7 +48,7 @@ class CadastroEstabelecimento extends Component {
 			return;
 		}
 
-		if (!(/[0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2}/.test(cnpj)) || cnpj.length !== 14) {
+		if (cnpj.length !== 14) {
 			NotificationManager.warning('Digite um cnpj válido!', 'Atenção');
 			return;
 		}
@@ -50,8 +56,7 @@ class CadastroEstabelecimento extends Component {
 		let estabelecimento = { 
 			nomeFantasia,
 			cnpj,
-			email,
-			// acessoUsuario
+			email
 		};
 
 		this.props.CadastrarEstabelecimento(estabelecimento)
@@ -88,7 +93,7 @@ class CadastroEstabelecimento extends Component {
 											<Col xs="12">
 												<FormGroup>
 													<Label htmlFor="cnpj">CNPJ</Label>
-													<Text maxLength="14" className="form-control" field="cnpj" id="cnpj" placeholder="Digite o CNPJ da sua empresa" />
+													<Text onChange={(e) => this.addMaskCnpj(e)} maxLength="18" className="form-control" field="cnpj" id="cnpj" placeholder="Digite o CNPJ da sua empresa" />
 												</FormGroup>
 											</Col>
 										</Row>

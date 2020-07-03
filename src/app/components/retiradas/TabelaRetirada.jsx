@@ -5,6 +5,7 @@ import {
 	ObterHistoricoRetirada
 } from '../../redux/actions/Retirada/RetiradaActions';
 import { ESTABELECIMENTO_ID } from '../../../config/utils/LocalStorageKeys';
+import { addMaskCpf, addMaskData } from '../../utils/helper/helper';
 
 class TabelaRetirada extends Component {
 	constructor(props) {
@@ -13,17 +14,6 @@ class TabelaRetirada extends Component {
 			idEstabelecimento: localStorage.getItem(ESTABELECIMENTO_ID)
 		} 
 		this.props.ObterHistoricoRetirada(this.state.idEstabelecimento);
-		this.formatarData = this.formatarData.bind(this);
-	}
-
-	formatarData(data) {
-		let dia = new Date(data).getDate();
-		let mes = new Date(data).getMonth() + 1;
-		let ano = new Date(data).getFullYear();
-
-		let dataFormatada = dia + '/' + mes + '/' + ano;
-		
-		return dataFormatada;
 	}
 
 	render() {
@@ -44,10 +34,10 @@ class TabelaRetirada extends Component {
 						this.props.historicoRetirada.map((retirada, index) => (
 							<tr key={index}>
 								<td>{retirada.nome}</td>
-								<td>{retirada.cpf}</td>
+								<td>{addMaskCpf(retirada.cpf)}</td>
 								<td>{retirada.descricao}</td>
 								<td>{retirada.pontos_gastos}</td>
-								<td>{this.formatarData(retirada.data_retirada)}</td>
+								<td>{addMaskData(retirada.data_retirada)}</td>
 							</tr>
 						))
 					}

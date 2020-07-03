@@ -15,6 +15,7 @@ import { Form, Text } from 'informed';
 
 import { CadastrarPontuacao, ObterPontuacoes, EsconderModalCadastroPontuacao } from '../../redux/actions/Pontuacao/PontuacaoActions';
 import { ObterDadosCliente } from '../../redux/actions/Cliente/ClienteActions';
+import { addMaskCpf, removeMaskCpf } from '../../utils/helper/helper';
 
 class FormularioPontuacao extends Component {
 	constructor(props) {
@@ -30,37 +31,50 @@ class FormularioPontuacao extends Component {
 
 		this.setFormApi = this.setFormApi.bind(this);
 		this.limparDadosCliente = this.limparDadosCliente.bind(this);
+		this.addMaskCpf = this.addMaskCpf.bind(this);
 	}
 
 	setFormApi(formApi) {
 		this.formApi = formApi;
 	}
 
-	obterDadosCliente() {
-		let cpf = this.formApi.getValue("cpfUsuario");
+	addMaskCpf(event) {
+		this.formApi.setValue('cpfUsuario', addMaskCpf(event.target.value))
+	}
 
-		this.props.ObterDadosCliente(cpf)
-			.then((res) => {
-				if (!res.error) {
-					this.setState({
-						dadosCliente: {
-							id: res.payload.data.id,
-							nome: res.payload.data.nome,
-							email: res.payload.data.email,
-							cpf: res.payload.data.cpf,
-						}
-					})
-				} else {
-					this.limparDadosCliente();
-				}
-			});
+	obterDadosCliente() {
+
+		let cpf = this.formApi.getValue("cpfUsuario");
+		
+		cpf = removeMaskCpf(cpf);
+
+		if (!cpf || cpf.length !== 11) {
+			NotificationManager.warning('Informe um cpf válido!', 'Atenção');
+		} else {
+			this.props.ObterDadosCliente(cpf)
+				.then((res) => {
+					if (!res.error) {
+						this.setState({
+							dadosCliente: {
+								id: res.payload.data.id,
+								nome: res.payload.data.nome,
+								email: res.payload.data.email,
+								cpf: res.payload.data.cpf,
+							}
+						})
+					} else {
+						this.limparDadosCliente();
+					}
+				});
+		}
 
 	}
 
 	salvarPontuacao() {
 		let data = this.formApi.getValues();
 
-		let { descricao, cpfUsuario, valor } = data;
+		let { descricao, valor } = data;
+		let cpfUsuario = removeMaskCpf(data.cpfUsuario);
 
 		if (!descricao || !cpfUsuario || !valor) {
 			NotificationManager.warning('Preencha todos campos!', 'Atenção');
@@ -77,7 +91,6 @@ class FormularioPontuacao extends Component {
 			.then((res) => {
 				if (!res.error) {
 					this.props.ObterPontuacoes();
-					this.formApi.reset();
 					this.limparDadosCliente();
 					this.props.EsconderModalCadastroPontuacao();
 				}
@@ -85,6 +98,7 @@ class FormularioPontuacao extends Component {
 	}
 
 	limparDadosCliente() {
+		this.formApi.reset();
 		this.setState({
 			dadosCliente: {
 				id: '',
@@ -97,6 +111,7 @@ class FormularioPontuacao extends Component {
 	dadosClientePreenchidos() {
 		return this.state.dadosCliente.id !== '';
 	}
+	
 	render() {
 		return (
 			<div className="animated fadeIn">
@@ -112,11 +127,19 @@ class FormularioPontuacao extends Component {
 													<Label htmlFor="cpfUsuario">CPF</Label>
 													<div className="row">
 														<div className="col-10">
-															<Text maxLength="11" className="form-control" field="cpfUsuario" id="cpfUsuario" placeholder="Digite o CPF do cliente" />
+															<Text maxLength="14" disabled={this.dadosClientePreenchidos()} onChange={(e) => this.addMaskCpf(e)} className="form-control" field="cpfUsuario" id="cpfUsuario" placeholder="Digite o CPF do cliente" />
 														</div>
-														<div className="col-2 pl-0">
-															<Button primary className="btn btn-md btn-primary" onClick={() => this.obterDadosCliente()}><i className="fa fa-search"></i></Button>
-														</div>
+														{this.dadosClientePreenchidos() &&
+															<div className="col-2 pl-0">
+																<Button primary className="btn btn-md btn-primary" onClick={() => this.limparDadosCliente()}><i className="fa fa-refresh"></i></Button>
+															</div>
+														}
+
+														{!this.dadosClientePreenchidos() &&
+															<div className="col-2 pl-0">
+																<Button primary className="btn btn-md btn-primary" onClick={() => this.obterDadosCliente()}><i className="fa fa-search"></i></Button>
+															</div>
+														}
 
 													</div>
 												</FormGroup>
@@ -147,7 +170,7 @@ class FormularioPontuacao extends Component {
 													<CardBody>
 														<p><b>Nome:</b> {this.state.dadosCliente.nome}</p>
 														<p><b>Email:</b> {this.state.dadosCliente.email}</p>
-														<p><b>CPF:</b> {this.state.dadosCliente.cpf}</p>
+														<p><b>CPF:</b> {addMaskCpf(this.state.dadosCliente.cpf)}</p>
 													</CardBody>
 												</Card>
 

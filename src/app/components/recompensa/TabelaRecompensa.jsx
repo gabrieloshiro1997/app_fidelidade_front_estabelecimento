@@ -10,13 +10,13 @@ import {
 	LimparConsultaRecompensas
 } from '../../redux/actions/Recompensa/RecompensaActions';
 import './css/TabelaRecompensa.css';
+import { addMaskData } from '../../utils/helper/helper';
 
 class TabelaRecompensa extends Component {
 	constructor(props) {
 		super(props);
 		this.editarRecompensa = this.editarRecompensa.bind(this);
 		this.excluirRecompensa = this.excluirRecompensa.bind(this);
-		this.formatarData = this.formatarData.bind(this);
 		this.alterarStatusRecompensa = this.alterarStatusRecompensa.bind(this);
 
 		this.props.ObterRecompensas();
@@ -40,15 +40,6 @@ class TabelaRecompensa extends Component {
 			.then(() => this.props.ExibirModalAlterarStatusRecompensa());
 	}
 
-	formatarData(data) {
-		let dia = new Date(data).getDate();
-		let mes = new Date(data).getMonth() + 1;
-		let ano = new Date(data).getFullYear();
-
-		let dataFormatada = dia + '/' + mes + '/' + ano;
-		
-		return dataFormatada;
-	}
 	render() {
 		return (
 			<Table responsive>
@@ -69,7 +60,7 @@ class TabelaRecompensa extends Component {
 								<td className="text-left">{recompensa.descricao}</td>
 								<td>{recompensa.pontos}</td>
 								<td>{recompensa.preco}</td>
-								<td>{this.formatarData(recompensa.data_validade)}</td>
+								<td>{addMaskData(recompensa.data_validade)}</td>
 								<td>{recompensa.status === 0 ? 'Inativo' : 'Ativo'}</td>
 								<td>
 									<Button className="fa fa-edit btn-sm mx-1 bg-primary" data-toggle="tooltip" data-placement="bottom" title="Editar" onClick={() => this.editarRecompensa(recompensa.id)} />
