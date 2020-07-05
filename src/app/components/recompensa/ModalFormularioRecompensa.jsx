@@ -22,7 +22,6 @@ class ModalFormularioRecompensa extends Component {
 		let preco = data.preco;
 		let data_validade = data.data_validade;
 		let estabelecimento_id = localStorage.getItem(ESTABELECIMENTO_ID);
-		console.log(data)
 		if (!descricao || !preco || !data_validade) {
 			NotificationManager.warning('Preencha todos os campos!', 'Atenção');
 			return;
