@@ -37,10 +37,16 @@ class ModalFormularioRecompensa extends Component {
 
 		if (this.props.recompensa.id) {
 			this.props.AtualizarRecompensa(recompensa)
-				.then(() => this.props.ObterRecompensas());
+				.then(() => {
+					this.props.EsconderModalFormularioRecompensa()
+					this.props.ObterRecompensas();
+				})
 		} else {
 			this.props.CadastrarRecompensa(recompensa)
-				.then(() => this.props.ObterRecompensas());
+				.then(() => {
+					this.props.ObterRecompensas();
+					this.props.EsconderModalFormularioRecompensa()
+				})
 		}
 	}
 	render() {
