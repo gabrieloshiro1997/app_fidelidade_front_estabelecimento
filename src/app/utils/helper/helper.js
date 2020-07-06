@@ -29,7 +29,7 @@ export const removeMaskCpf = (cpf) => {
 	
 	return cpf
 			.replace(/\./g, '')
-			.replace(/\-/g, '');
+			.replace(/-/g, '');
 };
 
 export const removeMaskCnpj = (cnpj) => {
@@ -38,7 +38,7 @@ export const removeMaskCnpj = (cnpj) => {
 
 	return cnpj
 			.replace(/\./g, '')
-			.replace(/\-/g, '')
+			.replace(/-/g, '')
 			.replace(/\//g, '');
 };
 

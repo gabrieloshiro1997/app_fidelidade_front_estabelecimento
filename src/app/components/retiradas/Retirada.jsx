@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Card, CardBody, Button, CardHeader } from 'reactstrap';
+import { Col, Card, CardBody, CardHeader } from 'reactstrap';
 import { connect } from 'react-redux';
 
 import TabelaRetirada from './TabelaRetirada';

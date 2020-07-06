@@ -266,8 +266,8 @@ class Relatorio extends Component {
 		let objetoRetornoPontuacaoMensal;
 		let objetoRetornoRecompensasRetiradas;
 
-		let dadosSexoFeminino = dadosDashboard.sexoPontos.filter((item) => item.sexo == "F");
-		let dadosSexoMasculino = dadosDashboard.sexoPontos.filter((item) => item.sexo == "M");
+		let dadosSexoFeminino = dadosDashboard.sexoPontos.filter((item) => item.sexo === "F");
+		let dadosSexoMasculino = dadosDashboard.sexoPontos.filter((item) => item.sexo === "M");
 
 		let pontosMensais = dadosDashboard.pontosMensais;
 
